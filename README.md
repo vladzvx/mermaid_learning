@@ -1,7 +1,7 @@
 # Проект для изучения [Mermaid](https://mermaid.js.org/) 
 
 ```mermaid
-flowchart TB
+flowchart TD
     mainDb[(PostgreSQL)]
     botDb[(PostgreSQL)]
     api[API]
@@ -10,11 +10,10 @@ flowchart TB
     broker[[RabbitMQ]]
     frontend[Frontend]
 
-botService <--> botDb
+botService --> botDb
 api ---> mainDb
-mainDb ---> api
 service ---> mainDb
-frontend --"REST"--> api ---> broker <--> service
+frontend --"REST"--> api ---> broker --> service
 service ---> broker
 botService ---> broker
 broker ---> botService
